@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Graphics Interchange Format - Search
+    {{title}}
 {% endblock %}
 
 {% block content %}
 <h2>
     <form>
-        <input type="text" value = "Excited" name="search">
+        <input type="text" name="search" id="searchInput" placeholder="Search GIFs">
         <button type="submit">SEARCH</button>
     </form>
 </h2>
-{% endblock %} 
 {% for gif in gifs %}
-    <img src={gif[weburl}>
+<img src="{{gif['media'][0]['gif']['url']}}" >
 {% endfor %}
+{% endblock %}

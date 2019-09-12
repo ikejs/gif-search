@@ -4,7 +4,7 @@ import json
 apikey = "LIVDSRZULELA" # API Key
 lmt = 10 # GIF Limit
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def index():
@@ -38,9 +38,12 @@ def index():
 
     if r.status_code == 200:
         gifs = json.loads(r.content)
+        print(gifs["results"])
+        title = q + " GIFs | Graphics Interchange Format Search"
         return render_template(
             'index.html',
-            gifs=gifs["results"]
+            gifs=gifs["results"],
+            title=title
             )
     else:
         return "Request error code: " + r.status_code
