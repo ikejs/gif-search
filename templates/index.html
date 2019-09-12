@@ -5,7 +5,13 @@
 {% endblock %}
 
 {% block content %}
-<form action="/gifs">
-    <form type="text" name="search_string"></form>
-</form>
-{% endblock %}
+<h2>
+    <form>
+        <input type="text" value = "Excited" name="search">
+        <button type="submit">SEARCH</button>
+    </form>
+</h2>
+{% endblock %} 
+{% for gif in gifs %}
+    {% include 'compliment.html' %}
+{% endfor %}
