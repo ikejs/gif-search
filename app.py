@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import requests
 import json
+apikey = "LIVDSRZULELA" # API Key
+lmt = 10 # GIF Limit
 
 app = Flask(__name__)
 
@@ -27,7 +29,21 @@ def index():
     # TODO: Render the 'index.html' template, passing the list of gifs as a
     # named parameter called 'gifs'
 
-    return render_template("index.html")
+
+    # set the apikey and limit
+
+    q = request.args.get('search')
+    r = requests.get(
+        "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (q, apikey, lmt))
+
+    if r.status_code == 200:
+        gifs = json.loads(r.content)
+        return render_template(
+            'index.html',
+            gifs=gifs["results"]
+            )
+    else:
+        return "Request error code: " + r.status_code
 
 if __name__ == '__main__':
     app.run(debug=True)
