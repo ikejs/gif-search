@@ -1,9 +1,17 @@
-.gif {
-    border-radius: 10px;
-    width:350px;
-}
-
 #header {
     margin:20px;
     text-align: center;
+    flex: 1 0 25%;
 }
+
+#gif_container{
+    display:flex;
+    flex-wrap:wrap;
+}
+.gif {
+    border-radius: 10px;
+    width:350px;
+    justify-content:center;
+}
+
+
