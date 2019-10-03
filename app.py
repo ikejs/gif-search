@@ -1,7 +1,10 @@
+import os
 from flask import Flask, render_template, request
 import requests
 import json
-apikey = "LIVDSRZULELA" # API Key
+from dotenv import load_dotenv
+load_dotenv()
+TENOR_API_KEY = os.getenv("TENOR_API_KEY")
 defaultQ = "exciting" # Default GIF search
 lmt = 10 # GIF Limit
 
@@ -15,7 +18,7 @@ def index():
     if not q:
         q = defaultQ
     r = requests.get(
-        "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (q, apikey, lmt))
+        "https://api.tenor.com/v1/search?q=%s&key=%s&limit=%s" % (q, TENOR_API_KEY, lmt))
 
     if r.status_code == 200:
         gifs = json.loads(r.content)
